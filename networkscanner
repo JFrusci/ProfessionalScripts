@@ -1,0 +1,30 @@
+import socket
+
+# Define the start and end IPs for the scan
+start_ip = "192.168.1.1"
+end_ip = "192.168.1.255"
+
+# Create an empty list to store any open ports that are found
+open_ports = []
+
+# Iterate over the IP range
+for ip in range(int(start_ip.split(".")[-1]), int(end_ip.split(".")[-1])):
+    # Construct the current IP to be scanned
+    current_ip = ".".join(start_ip.split(".")[:-1]) + "." + str(ip)
+    
+    # Iterate over all ports (1-65535)
+    for port in range(1,65535):
+        # Create a new socket
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        # Set timeout to 5 seconds
+        sock.settimeout(5)
+        # Attempt to connect to the current IP and port
+        result = sock.connect_ex((current_ip, port))
+        # If the result of the connection attempt is 0 (success), add the IP and port to the list of open ports
+        if result == 0:
+            open_ports.append((current_ip, port))
+        # Close the socket
+        sock.close()
+
+# Print out the list of open ports
+print("Open ports:", open_ports)
