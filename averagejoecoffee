@@ -1,38 +1,80 @@
-#Let's build Robot Barista!!
+import random
 
-#Greet your customer
-print("Hello, welcome to Average Joe Coffee!")
+# Coffee shop greetings
+print("Hello, welcome to *Robot Barista Coffee Corner*, where the coffee is brewed just right!")
 
-#Ask your customer what their name is with the input() function and store that in the variable NAME.
-name = input("What is your name?\n").capitalize()
+# Ask customer name and personalize the greeting
+name = input("What’s your name, friend?\n").capitalize()
+greetings = [
+    f"Great to see you, {name}!",
+    f"Hey {name}, it’s always a pleasure!",
+    f"{name}, welcome! We've been waiting for you!"
+]
+print(random.choice(greetings), "Thanks for stopping by today.\n\n")
 
-#Greet the customer with their name and thank them for coming in today using concatenation.
-print("Hello " + name + ", thank you so much for coming in today.\n\n")
+# Expanded Menu
+menu = """
+Our special menu today includes:
+- Black Coffee
+- Espresso
+- Latte
+- Cappuccino
+- Mocha
+- Iced Coffee
+- Flat White
+- Macchiato
+- Chai Latte
+- Hot Chocolate
+- Green Tea
+"""
 
-#Coffee menu
-menu = "Black Coffee, Espresso, Latte, Cappucino"
+print(menu)
 
-#Ask the customer what they would like from the menu and store it in the variable order.
-order = input(name + ", what would you like from our menu today? Here is what we are serving.\n" + menu + "\n").lower()
+# Get the customer's order
+order = input(f"So, {name}, what would you like to have from our menu?\n").lower()
 
-#Ask the customer how many coffees they would like and store it in the variable QUANTITY
-quantity = input("How many coffees would you like?\n")
+# Confirm the order
+confirmations = [
+    "Good choice! That’s one of my favorites.",
+    "Yum! You’re in for a treat.",
+    "Ah, an excellent selection!"
+]
+print(random.choice(confirmations))
 
-#Set the price for coffee
-if order == "black coffee":
-  price = 6
-elif order == "espresso":
-  price = 7
-elif order == "latte":
-  price = 8
-elif order == "cappucino":
-  price = 9
+# Ask how many drinks they'd like
+quantity = int(input(f"And how many cups of {order} would you like?\n"))
 
-#Calculate the customer's total
-total = price * int(quantity)
+# Prices for the expanded menu
+price_list = {
+    "black coffee": 6,
+    "espresso": 7,
+    "latte": 8,
+    "cappuccino": 9,
+    "mocha": 8,
+    "iced coffee": 7,
+    "flat white": 9,
+    "macchiato": 7,
+    "chai latte": 8,
+    "hot chocolate": 6,
+    "green tea": 5
+}
 
-#Give the customer their total
-print("Thank you. Your total is: $" + str(total))
+# Calculate the total
+if order in price_list:
+    price = price_list[order]
+    total = price * quantity
+    print(f"Perfect! Your total comes to ${total}.")
+else:
+    print("Oops! We don’t have that on the menu today. Please choose from our menu options.")
 
-#Final statement
-print("Sounds good " + name + ", we'll have your " + quantity + " " + order + " ready for you in a moment.")
+# Wrap it up
+print(f"Thanks, {name}! We’ll have your {quantity} cup(s) of {order} ready in just a moment.")
+print("Feel free to relax, and we’ll let you know when it’s ready!")
+
+# Final sign-off
+final_messages = [
+    "Thank you for choosing Robot Barista Coffee Corner, your cup of joy is our passion!",
+    "We appreciate your visit today. Enjoy your drink and have an awesome day ahead!",
+    "Looking forward to seeing you again soon! Enjoy your coffee!"
+]
+print(random.choice(final_messages))
